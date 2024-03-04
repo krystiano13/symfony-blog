@@ -8,16 +8,18 @@
             {%
                 include 'blog/partials/banner.html.twig'
             %}
-            <div id="blog-posts" class="w-full flex flex-col items-center translate-y-[-3rem]">
-                {%
-                    include 'blog/partials/blogCard.html.twig'
-                    with {
-                        title: 'First Post',
-                        date: '12 October 2024',
-                        src: 'build/images/bg1.jpg',
-                        desc: ''
+            <div id="blog-posts" class="w-full flex flex-col items-center gap-6 translate-y-[-3rem]">
+                {% for post in posts %}
+                    {%
+                        include 'blog/partials/blogCard.html.twig'
+                        with {
+                        title: post.title,
+                        date: post.date,
+                        src: post.image,
+                        desc: post.description
                     }
-                %}
+                    %}
+                {% endfor %}
             </div>
         </section>
     </main>
