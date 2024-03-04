@@ -2,16 +2,35 @@
 
 {% block body %}
     <main class="w-[100vw] h-auto min-h-[100vh]">
-        <section id="about" class="w-72 bg-gray-50 h-[100vh] fixed z-50"></section>
-        <section id="posts" class="w-full h-auto">
-            <div id="banner" class="relative w-full flex justify-center items-center h-80">
+        <section id="about"
+                 class="w-72 bg-gray-50 h-[100vh] translate-x-[-100vw] lg:translate-x-0 fixed z-50"></section>
+        <section id="posts" class="w-full h-auto bg-gray-100 min-h-[100vh] flex flex-col items-center">
+            <div id="banner" class="relative w-full flex justify-center items-center h-96">
                 <h1 class="text-4xl lg:pl-72 absolute text-white z-50 font-bold">Krystian Zieja</h1>
-                <h2 class="text-lg lg:pl-72 absolute mt-32 text-white z-50 text-opacity-75 font-normal">FullStack Developer's Blog</h2>
+                <h2 class="text-lg lg:pl-72 absolute mt-32 text-white z-50 text-opacity-75 font-normal">
+                    FullStack Developer's Blog
+                </h2>
                 <img
                         class="w-full absolute h-full object-cover object-top grayscale-50 brightness-[0.25]"
                         src="{{ asset('build/images/bg1.jpg') }}"
                         alt="banner background"
                 />
+            </div>
+            <div id="blog-posts" class="w-full flex flex-col items-center translate-y-[-3rem]">
+                <section class="post w-[42rem] lg:ml-72 h-auto bg-white">
+                    <h1>First Post</h1>
+                    <h2>12 October 2024</h2>
+                    <div id="post-image"></div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus iaculis lacus finibus nisi
+                        feugiat, efficitur tempor orci imperdiet. Integer eget augue pharetra, blandit augue ac,
+                        tristique massa. Etiam fermentum dui quis dolor malesuada, molestie finibus enim venenatis. Nam
+                        quis velit enim.
+                    </p>
+                    <section>
+                        <button>Comments</button>
+                        <button>Read More</button>
+                    </section>
+                </section>
             </div>
         </section>
     </main>
