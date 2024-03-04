@@ -17,4 +17,17 @@ class BlogController extends AbstractController
             'posts' => $posts
         ]);
     }
+
+    #[Route('/blog/{id}', name: 'show_blog')]
+    public function show(int $id, PostRepository $postRepository): Response {
+        $post = $postRepository -> find($id);
+
+        if(!isset($post)) {
+            return $this->redirectToRoute('app_blog');
+        }
+
+        return $this -> render('blog/show.html.twig', [
+            'post' => $post
+        ]);
+    }
 }

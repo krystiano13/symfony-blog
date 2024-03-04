@@ -4,7 +4,10 @@
     <div id="post-image" class="w-full h-auto">
         <img class="w-full object-cover" src="{{ asset(src) }}" alt="bg1" />
     </div>
-    <p class="text-lg text-gray-700">{{ desc }} {{ "..." }}</p>
+    <p class="text-lg text-gray-700">
+        {{ desc|slice(0,400) }}
+        {{ "..." }}
+    </p>
     <section class="w-full flex justify-between items-center mt-6">
         <button
                 class="transition-colors hover:bg-emerald-600 font-semibold text-white bg-emerald-500 p-2 pr-4 pl-4"
