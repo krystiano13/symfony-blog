@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    <main class="w-[100vw] h-auto min-h-[100vh]">
+        <section id="about" class="w-72 bg-gray-50 h-[100vh] fixed z-50"></section>
+        <section id="posts" class="w-full h-auto">
+            <div id="banner" class="w-full h-80 grayscale-50 brightness-[0.25]">
+                <img
+                        class="w-full h-full object-cover object-top"
+                        src="{{ asset('build/images/bg1.jpg') }}"
+                        alt="banner background"
+                />
+            </div>
+        </section>
+    </main>
 {% endblock %}
