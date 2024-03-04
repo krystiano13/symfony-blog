@@ -2,7 +2,7 @@
     <h1 class="text-3xl font-semibold">{{ title }}</h1>
     <h2 class="text-lg font-normal text-gray-600">{{ date }}</h2>
     <div id="post-image" class="w-full h-auto">
-        <img class="w-full object-cover" src="{{ src }}" alt="bg1" />
+        <img class="w-full object-cover" src="{{ asset(src) }}" alt="bg1" />
     </div>
     <p class="text-lg text-gray-700">{{ desc }} {{ "..." }}</p>
     <section class="w-full flex justify-between items-center mt-6">
