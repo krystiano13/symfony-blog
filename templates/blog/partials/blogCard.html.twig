@@ -1,0 +1,20 @@
+<section class="post w-[20rem] md:w-[32rem] xl:w-[46rem] xl:ml-72 h-auto flex flex-col gap-4 bg-white p-6">
+    <h1 class="text-3xl font-semibold">{{ title }}</h1>
+    <h2 class="text-lg font-normal text-gray-600">{{ date }}</h2>
+    <div id="post-image" class="w-full h-auto">
+        <img class="w-full object-cover" src="{{ src }}" alt="bg1" />
+    </div>
+    <p class="text-lg text-gray-700">{{ desc }} {{ "..." }}</p>
+    <section class="w-full flex justify-between items-center mt-6">
+        <button
+                class="transition-colors hover:bg-emerald-600 font-semibold text-white bg-emerald-500 p-2 pr-4 pl-4"
+        >
+            Comments
+        </button>
+        <button
+                class="transition-colors hover:bg-blue-800 font-semibold text-white bg-blue-700 p-2 pr-4 pl-4"
+        >
+            Read More
+        </button>
+    </section>
+</section>
