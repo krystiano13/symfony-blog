@@ -1,5 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Blog Post</h1>
+    <main class="w-[100vw] h-auto min-h-[100vh]">
+        <section
+                id="about"
+                 class="w-72 bg-gray-50 h-[100vh] translate-x-[-100vw] xl:translate-x-0 fixed z-50">
+        </section>
+        <section id="posts" class="w-full h-auto bg-gray-100 min-h-[100vh] flex flex-col items-center">
+            {% include 'blog/partials/banner.html.twig' %}
+            <div id="blog-posts" class="w-full flex flex-col items-center gap-6 translate-y-[-3rem]">
+                {%
+                    include 'blog/partials/blogCard.html.twig'
+                    with {
+                        id: post.id,
+                        title: post.title,
+                        date: post.date,
+                        src: post.image,
+                        desc: post.description,
+                        sliced: 0
+                }
+                %}
+            </div>
+        </section>
+    </main>
 {% endblock %}

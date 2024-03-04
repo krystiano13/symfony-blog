@@ -13,10 +13,12 @@
                     {%
                         include 'blog/partials/blogCard.html.twig'
                         with {
-                        title: post.title,
-                        date: post.date,
-                        src: post.image,
-                        desc: post.description
+                            id: post.id,
+                            title: post.title,
+                            date: post.date,
+                            src: post.image,
+                            desc: post.description,
+                            sliced: 1
                     }
                     %}
                 {% endfor %}

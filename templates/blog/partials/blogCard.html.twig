@@ -5,19 +5,28 @@
         <img class="w-full object-cover" src="{{ asset(src) }}" alt="bg1" />
     </div>
     <p class="text-lg text-gray-700">
-        {{ desc|slice(0,400) }}
-        {{ "..." }}
+        {% if sliced == 1 %}
+            {{ desc|slice(0,400) }}
+            {{ "..." }}
+        {% endif %}
+        {% if sliced == 0 %}
+            {{ desc }}
+        {% endif %}
     </p>
-    <section class="w-full flex justify-between items-center mt-6">
-        <button
-                class="transition-colors hover:bg-emerald-600 font-semibold text-white bg-emerald-500 p-2 pr-4 pl-4"
-        >
-            Comments
-        </button>
-        <button
-                class="transition-colors hover:bg-blue-800 font-semibold text-white bg-blue-700 p-2 pr-4 pl-4"
-        >
-            Read More
-        </button>
-    </section>
+    {% if sliced == 1 %}
+        <section class="w-full flex justify-between items-center mt-6">
+            <a
+                    href="/blog/{{ id }}#comments"
+                    class="cursor-pointer transition-colors hover:bg-emerald-600 font-semibold text-white bg-emerald-500 p-2 pr-4 pl-4"
+            >
+                Comments
+            </a>
+            <a
+                    href="/blog/{{ id }}"
+                    class="cursor-pointer transition-colors hover:bg-blue-800 font-semibold text-white bg-blue-700 p-2 pr-4 pl-4"
+            >
+                Read More
+            </a>
+        </section>
+    {% endif %}
 </section>
