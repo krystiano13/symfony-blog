@@ -26,8 +26,11 @@ class BlogController extends AbstractController
             return $this->redirectToRoute('app_blog');
         }
 
+        $comments = $post -> getComments();
+
         return $this -> render('blog/show.html.twig', [
-            'post' => $post
+            'post' => $post,
+            'comments' => $comments
         ]);
     }
 }
