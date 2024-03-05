@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Comment;
 use App\Entity\Post;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -19,7 +20,14 @@ class PostFixtures extends Fixture
                                 tristique massa. Etiam fermentum dui quis dolor malesuada, molestie finibus enim venenatis. Nam
                                 quis velit enim.');
 
+        $comment = new Comment();
+        $comment -> setPost($post);
+        $comment -> setText('Nice One. It was fun to read');
+        $comment -> setUsername('Admin');
+        $comment -> setDate(new \DateTime('now'));
+
         $manager -> persist($post);
+        $manager -> persist($comment);
         $manager -> flush();
     }
 }
