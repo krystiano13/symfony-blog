@@ -22,7 +22,16 @@
                 Comments
             </h2>
             <div id="comments" class="mt-10 mb-10 w-[20rem] md:w-[32rem] xl:w-[46rem] xl:ml-72 flex flex-col gap-3">
-
+                {% for comment in comments %}
+                    {%
+                        include 'blog/partials/comment.html.twig'
+                        with {
+                            username: comment.username,
+                            text: comment.text,
+                            date: comment.date
+                        }
+                    %}
+                {% endfor %}
             </div>
         </section>
     </main>
