@@ -1,12 +1,14 @@
 <section id="about"
-         class="w-72 bg-gray-50 h-[100vh] translate-x-[-100vw] xl:translate-x-0 fixed z-50"
+         class="flex gap-5 flex-col justify-start items-center p-4 w-72 bg-gray-50 h-[100vh] translate-x-[-100vw] xl:translate-x-0 fixed z-50"
 >
-    <img src="{{ asset('build/images/avatar1.webp') }}" alt="avatar"/>
-    <h2>Krystian Zieja</h2>
-    <p>
+    <img class="w-[70%]" src="{{ asset('build/images/avatar1.webp') }}" alt="avatar"/>
+    <h2 class="font-bold text-xl">Krystian Zieja</h2>
+    <p class="text-center text-base text-gray-600">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in diam non neque pellentesque
         laoreet. Morbi id blandit metus. Ut auctor, lacus sed condimentum mollis, felis nisi hendrerit enim, vel
         scelerisque eros leo nec risus. Etiam eu feugiat diam.
     </p>
-    <button>See Profile</button>
+    <a href="/" class="cursor-pointer text-white font-semibold bg-emerald-500 p-2 pr-3 pl-3 transition-colors hover:bg-emerald-600">
+        See Profile
+    </a>
 </section>
