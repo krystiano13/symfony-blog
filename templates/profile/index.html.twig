@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="w-[100vw] h-[100vh] flex flex-col items-center justify-center gap-6 bg-gray-50">
+        <img class="w-36" src="{{ asset('build/images/avatar1.webp') }}" alt="avatar"/>
+        <h2 class="font-bold text-4xl">Krystian Zieja</h2>
+        <p class="text-center text-xl text-gray-600 max-w-96">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in diam non neque pellentesque
+            laoreet. Morbi id blandit metus. Ut auctor, lacus sed condimentum mollis, felis nisi hendrerit enim, vel
+            scelerisque eros leo nec risus. Etiam eu feugiat diam.
+        </p>
+        <div id="btn" class="w-full flex justify-center">
+            <a href="/" class="cursor-pointer text-white p-2 pr-3 pl-3 bg-red-500 hover:bg-red-600 transition-colors">
+                Go Back
+            </a>
+        </div>
+    </main>
+{% endblock %}
