@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.form-builder-input {
+    @apply
+    p-1.5 border-[1px] border-gray-700 border-solid
+    outline-0 text-lg focus:border-emerald-500 font-semibold
+    rounded-xl focus:text-emerald-500 transition-colors;
+}
+
 body {
     margin : 0;
     padding : 0;
@@ -15,6 +22,10 @@ body {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-.post, .comment {
+.rform {
+    @apply p-10 pt-12 pb-12 rounded-xl;
+}
+
+.post, .comment, .rform {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }

@@ -19,16 +19,14 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', null, ['label' => false, 'attr' => ['placeholder' => 'username']])
-            ->add('email', EmailType::class, ['label' => false, 'attr' => ['placeholder' => 'email']])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
+            ->add('name', null, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'username',
+                    'class' => 'form-builder-input'
+                ]
             ])
+            ->add('email', EmailType::class, ['label' => false, 'attr' => ['placeholder' => 'email', 'class' => 'form-builder-input']])
             ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -47,10 +45,9 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-                'first_options'  => ['label' => false, 'attr' => ['placeholder' => 'password']],
-                'second_options' => ['label' => false, 'attr' => ['placeholder' => 'repeat password']],
-            ])
-        ;
+                'first_options' => ['label' => false, 'attr' => ['placeholder' => 'password', 'class' => 'form-builder-input']],
+                'second_options' => ['label' => false, 'attr' => ['placeholder' => 'repeat password', 'class' => 'form-builder-input']],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

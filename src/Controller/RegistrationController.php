@@ -21,7 +21,7 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user, [
             'attr' => [
-                'class' => 'flex flex-col gap-2'
+                'class' => 'flex flex-col gap-6 bg-white rounded-xl rform'
             ]
         ]);
         $form->handleRequest($request);

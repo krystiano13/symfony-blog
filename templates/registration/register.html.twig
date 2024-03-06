@@ -3,20 +3,15 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <main class="w-[100vw] min-h-[100vh] flex flex-col items-center justify-center gap-6">
-        <h1>Register</h1>
-
+    <main class="w-[100vw] min-h-[100vh] bg-gray-50 flex flex-col items-center justify-center gap-6">
         {{ form_errors(registrationForm) }}
 
         {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.name) }}
         {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(registrationForm.plainPassword) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="text-white font-semibold p-3 pr-5 pl-5 bg-red-500 hover:bg-red-600 transition-colors">Register</button>
         {{ form_end(registrationForm) }}
     </main>
 {% endblock %}
