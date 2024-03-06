@@ -3,35 +3,34 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <main class="w-[100vw] min-h-[100vh] bg-gray-50 flex flex-col items-center justify-center gap-6">
+        <form class="flex flex-col gap-6 bg-white rounded-xl rform" method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <input placeholder="email" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control form-builder-input" autocomplete="email" required autofocus>
+            <input placeholder="password" type="password" name="password" id="inputPassword" class="form-control form-builder-input" autocomplete="current-password" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
 
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" name="_remember_me"> Remember me
-        </label>
-    </div>
+            <div class="checkbox mb-3">
+                <label class="font-semibold text-gray-800 text-lg">
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+            </div>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+            <button class="text-white font-semibold p-3 pr-5 pl-5 bg-red-500 hover:bg-red-600 transition-colors" type="submit">
+                Sign in
+            </button>
+        </form>
+    </main>
 {% endblock %}
