@@ -6,8 +6,12 @@
 </div>
 
 <div id="user_info" class="pr-12 mt-6 absolute w-[100vw] flex items-center justify-end gap-6">
-    <a class="z-50 transition-colors hover:bg-emerald-600 text-white font-semibold p-2 pr-5 pl-5 bg-emerald-500" href="/login">Log In</a>
-    <a class="z-50 transition-colors hover:bg-red-600 text-white font-semibold p-2 pr-5 pl-5 bg-red-500" href="/register">Register</a>
+    {% if is_granted('ROLE_USER') %}
+        <a class="z-50 transition-colors hover:bg-red-600 text-white font-semibold p-2 pr-5 pl-5 bg-red-500" href="/logout">Logout</a>
+    {% else %}
+        <a class="z-50 transition-colors hover:bg-emerald-600 text-white font-semibold p-2 pr-5 pl-5 bg-emerald-500" href="/login">Log In</a>
+        <a class="z-50 transition-colors hover:bg-red-600 text-white font-semibold p-2 pr-5 pl-5 bg-red-500" href="/register">Register</a>
+    {% endif %}
 </div>
 
 <section id="about"
