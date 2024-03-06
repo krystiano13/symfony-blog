@@ -5,12 +5,16 @@
     <div class="line bg-white w-8 h-1"></div>
 </div>
 
-<div id="user_info" class="pr-12 mt-6 absolute w-[100vw] flex items-center justify-end gap-6">
+<div id="user_info" class="pr-6 md:pr-12 mt-6 absolute w-[100vw] flex items-center justify-end gap-6">
     {% if is_granted('ROLE_USER') %}
-        <a class="z-50 transition-colors hover:bg-red-600 text-white font-semibold p-2 pr-5 pl-5 bg-red-500" href="/logout">Logout</a>
+        <p class="text-xs md:text-base text-white font-semibold z-50">{{ app.user.name }}</p>
+        {% if is_granted('ROLE_USER') %}
+            <a class="z-50 transition-colors hover:bg-blue-800 text-white font-semibold text-xs md:text-base p-1 md:p-2 pr-3 md:pr-5 pl-3 md:pl-5 bg-blue-700" href="/">Dashboard</a>
+        {% endif %}
+        <a class="z-50 transition-colors hover:bg-red-600 text-white font-semibold text-xs md:text-base p-1 md:p-2 pr-3 md:pr-5 pl-3 md:pl-5 bg-red-500" href="/logout">Logout</a>
     {% else %}
-        <a class="z-50 transition-colors hover:bg-emerald-600 text-white font-semibold p-2 pr-5 pl-5 bg-emerald-500" href="/login">Log In</a>
-        <a class="z-50 transition-colors hover:bg-red-600 text-white font-semibold p-2 pr-5 pl-5 bg-red-500" href="/register">Register</a>
+        <a class="z-50 transition-colors hover:bg-emerald-600 text-white font-semibold text-xs md:text-base p-1 md:p-2 pr-3 md:pr-5 pl-3 md:pl-5 bg-emerald-500" href="/login">Log In</a>
+        <a class="z-50 transition-colors hover:bg-red-600 text-white font-semibold text-xs md:text-base p-1 md:p-2 pr-3 md:pr-5 pl-3 md:pl-5 bg-red-500" href="/register">Register</a>
     {% endif %}
 </div>
 
