@@ -23,7 +23,7 @@
             </h2>
             <div id="comments" class="mt-10 mb-10 w-[20rem] md:w-[32rem] xl:w-[46rem] xl:ml-72 flex flex-col gap-6">
                 {% if is_granted('ROLE_USER') %}
-                    <form class="flex flex-col gap-3" method="POST" action="/addComment">
+                    <form class="flex flex-col gap-3" method="POST" action="/sendComment">
                         <textarea
                                 class="p-2 rounded-xl border-solid border-[1px] hover:border-emerald-500
                                 transition-colors outline-0 focus:border-emerald-500 min-h-36 max-h-36"
