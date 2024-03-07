@@ -32,7 +32,7 @@ class Comment
     #[Assert\NotBlank]
     #[Assert\NotNull]
     private ?Post $post = null;
-g
+
     public function getId(): ?int
     {
         return $this->id;

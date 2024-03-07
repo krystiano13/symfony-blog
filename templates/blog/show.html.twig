@@ -27,7 +27,6 @@
                         <textarea
                                 class="p-2 rounded-xl border-solid border-[1px] hover:border-emerald-500
                                 transition-colors outline-0 focus:border-emerald-500 min-h-36 max-h-36"
-                                required
                                 name="text"
                                 placeholder="Your comment ..."
                         ></textarea>
@@ -43,6 +42,9 @@
                         >
                             Comment
                         </button>
+                        {% for error in errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
                     </form>
                 {% endif %}
                 {% for comment in comments %}
