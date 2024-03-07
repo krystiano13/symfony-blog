@@ -21,14 +21,28 @@
             <h2 class="w-[20rem] md:w-[32rem] xl:w-[46rem] xl:ml-72 text-left text-2xl font-medium">
                 Comments
             </h2>
-            <div id="comments" class="mt-10 mb-10 w-[20rem] md:w-[32rem] xl:w-[46rem] xl:ml-72 flex flex-col gap-3">
+            <div id="comments" class="mt-10 mb-10 w-[20rem] md:w-[32rem] xl:w-[46rem] xl:ml-72 flex flex-col gap-6">
                 {% if is_granted('ROLE_USER') %}
-                    <form method="POST" action="/addComment">
-                        <textarea></textarea>
+                    <form class="flex flex-col gap-3" method="POST" action="/addComment">
+                        <textarea
+                                class="p-2 rounded-xl border-solid border-[1px] hover:border-emerald-500
+                                transition-colors outline-0 focus:border-emerald-500 min-h-36 max-h-36"
+                                required
+                                name="text"
+                                placeholder="Your comment ..."
+                        ></textarea>
+                        <input required type="hidden" name="post_id" value="{{ post.id }}" />
+                        <input required type="hidden" name="username" value="{{ app.user.name }}" />
                         <input type="hidden" name="_csrf_token"
                                value="{{ csrf_token('authenticate') }}"
                         >
-                        <button type="submit">Comment</button>
+                        <button
+                                class="text-white bg-emerald-500 font-semibold p-3 pr-6 pl-6
+                                hover:bg-emerald-600 transition-colors"
+                                type="submit"
+                        >
+                            Comment
+                        </button>
                     </form>
                 {% endif %}
                 {% for comment in comments %}
