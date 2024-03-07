@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -15,17 +16,23 @@ class Comment
     private ?int $id = null;
 
     #[ORM\Column(length: 2500)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max:1000)]
     private ?string $text = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?string $username = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?Post $post = null;
-
+g
     public function getId(): ?int
     {
         return $this->id;
