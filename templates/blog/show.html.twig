@@ -22,6 +22,15 @@
                 Comments
             </h2>
             <div id="comments" class="mt-10 mb-10 w-[20rem] md:w-[32rem] xl:w-[46rem] xl:ml-72 flex flex-col gap-3">
+                {% if is_granted('ROLE_USER') %}
+                    <form method="POST" action="/addComment">
+                        <textarea></textarea>
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+                        <button type="submit">Comment</button>
+                    </form>
+                {% endif %}
                 {% for comment in comments %}
                     {%
                         include 'blog/partials/comment.html.twig'
