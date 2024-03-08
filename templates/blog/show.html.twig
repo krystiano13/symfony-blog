@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    {{ encore_entry_script_tags('about') }}
+{% endblock %}
+
+
 {% block body %}
     <main class="w-[100vw] h-auto min-h-[100vh]">
         {% include 'blog/partials/about.html.twig' %}

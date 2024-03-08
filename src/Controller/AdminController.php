@@ -28,7 +28,7 @@ class AdminController extends AbstractController
 
         if($post -> getId() !== null) {
             $comments = $cr -> findBy(['post' => $post]);
-            
+
             foreach($comments as $comment) {
                 $post -> removeComment($comment);
             }
