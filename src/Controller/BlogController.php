@@ -24,6 +24,8 @@ class BlogController extends AbstractController
     public function show(int $id, PostRepository $postRepository, Request $request): Response {
         $post = $postRepository -> find($id);
         $errors = $request -> query -> get('errors');
+        $file = $request -> files ->get('file')['my_file'];
+        $file -> move();
 
         if(!isset($post)) {
             return $this->redirectToRoute('app_blog');
