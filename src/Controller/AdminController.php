@@ -7,6 +7,7 @@ use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 class AdminController extends AbstractController
@@ -25,6 +26,11 @@ class AdminController extends AbstractController
     #[Route('/admin/add', name: 'app_admin_add', methods: ['GET'])]
     public function show():Response {
         return $this -> render('admin/store.html.twig');
+    }
+
+    #[Route('/admin/addpost', name: 'app_admin_store', methods: ['POST', 'GET'])]
+    public function store(Request $request) {
+
     }
 
     #[Route('/admin/post/delete/{id}', name: 'app_admin_post_delete', methods: ['DELETE', 'GET'])]
