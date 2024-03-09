@@ -14,4 +14,12 @@
 * JS
 
 ## Setup
-Coming Soon 
+* install PHP and MySQL
+* install symfony cli
+* clone repo
+* in .env add path to your MySQL database
+* in project folder run ```composer install``` and ```npm run watch```
+* run ```symfony console doctrine:database:create```
+* run ```symfony console doctrine:migrations:migrate```
+* run ```symfony console doctrine:fixtures:load```
+* run ```symfony server:start``` and ```npm run watch```
