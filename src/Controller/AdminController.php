@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class AdminController extends AbstractController
 {
@@ -30,7 +31,21 @@ class AdminController extends AbstractController
 
     #[Route('/admin/addpost', name: 'app_admin_store', methods: ['POST', 'GET'])]
     public function store(Request $request) {
+        $title = $request -> get('title');
+        $description = $request -> get('description');
 
+        /**
+         * Uploaded Image
+         * @type UploadedFile
+         */
+        $image_file = $request -> files -> get('image_file');
+
+        $image_file -> move(
+            $this -> getParameter('kernel.project_dir')."/public/build/images/",
+            uniqid().$image_file -> getClientOriginalName()
+        );
+
+        dd($image_file);
     }
 
     #[Route('/admin/post/delete/{id}', name: 'app_admin_post_delete', methods: ['DELETE', 'GET'])]
