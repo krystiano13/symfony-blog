@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraints\Date;
 
 class AdminController extends AbstractController
 {
@@ -31,9 +30,30 @@ class AdminController extends AbstractController
         return $this -> render('admin/store.html.twig');
     }
 
+    #[Route('admin/edit', name: 'app_admin_edit_view', methods: ['GET'])]
+    public function editView():Response {
+        return $this -> render('admin/edit');
+    }
+
     #[Route('/admin/addpost', name: 'app_admin_store', methods: ['POST', 'GET'])]
     public function store(Request $request, EntityManagerInterface $em) {
         $post = new Post();
+
+        $this -> addOrEdit($post, $request);
+
+        $em -> persist($post);
+        $em -> flush();
+
+        return $this->redirectToRoute('app_admin');
+    }
+
+    #[Route('/admin/editpost/{id}', name: 'app_admin_edit', methods: ['PUT', 'PATCH', 'GET'])]
+    public function edit(int $id,Request $request, EntityManagerInterface $em, PostRepository $pr) {
+        $post = $pr -> find($id);
+
+        if(!$post) {
+            return $this -> redirectToRoute('/admin');
+        }
 
         $this -> addOrEdit($post, $request);
 
