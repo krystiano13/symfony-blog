@@ -23,3 +23,4 @@
 * run ```symfony console doctrine:migrations:migrate```
 * run ```symfony console doctrine:fixtures:load```
 * run ```symfony server:start``` and ```npm run watch```
+* To access admin dashboard - create account and set roles as '["ROLES_USER", "ROLES_ADMIN"]' using SQL
