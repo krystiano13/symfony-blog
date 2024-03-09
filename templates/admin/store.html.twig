@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% if is_granted('ROLE_ADMIN') %}
-        <h1>Store</h1>
-    {% endif %}
+    <main class="w-[100vw] min-h-[100vh] bg-gray-50">
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="fixed z-50">
+                {% include 'admin/partials/nav.html.twig' %}
+            </div>
+            <section id="form-wrapper" class="w-[100vw] h-screen flex justify-center items-center">
+
+            </section>
+        {% endif %}
+    </main>
 {% endblock %}
