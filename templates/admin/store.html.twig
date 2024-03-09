@@ -7,7 +7,13 @@
                 {% include 'admin/partials/nav.html.twig' %}
             </div>
             <section id="form-wrapper" class="w-[100vw] h-screen flex justify-center items-center">
-
+                <form method="POST" action="/admin/addpost" enctype="multipart/form-data">
+                    <input required placeholder="title" type="text" name="title" />
+                    <textarea required placeholder="description" name="description"></textarea>
+                    <label>Image</label>
+                    <input type="file" name="image_file" />
+                    <button type="submit">Add</button>
+                </form>
             </section>
         {% endif %}
     </main>
