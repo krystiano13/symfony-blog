@@ -39,7 +39,8 @@ class AdminController extends AbstractController
         }
 
         return $this -> render('admin/edit.html.twig', [
-            'id' => $id
+            'id' => $id,
+            'post' => $post
         ]);
     }
 
