@@ -10,8 +10,8 @@
                 {%
                     include 'admin/partials/form.html.twig'
                     with {
-                        action: '/admin/addpost',
-                        mode: 'add'
+                        action: '/admin/editpost/{{ id }}',
+                        mode: 'edit'
                     }
                 %}
             </section>

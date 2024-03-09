@@ -5,6 +5,9 @@
         action="{{ action }}"
         enctype="multipart/form-data"
 >
+    {% if mode == 'edit' %}
+        <input type="hidden" name="_method" value="PUT" />
+    {% endif %}
     <input class="outline-0 p-2 border-solid border-[1px] rounded-lg" required placeholder="title" type="text" name="title" />
     <textarea class="outline-0 p-2 border-solid border-[1px] rounded-lg min-h-32 max-h-64" required placeholder="description" name="description"></textarea>
     <label>Image</label>

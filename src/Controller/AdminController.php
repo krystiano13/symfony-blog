@@ -30,9 +30,17 @@ class AdminController extends AbstractController
         return $this -> render('admin/store.html.twig');
     }
 
-    #[Route('admin/edit', name: 'app_admin_edit_view', methods: ['GET'])]
-    public function editView():Response {
-        return $this -> render('admin/edit');
+    #[Route('admin/edit/{id}', name: 'app_admin_edit_view', methods: ['GET'])]
+    public function editView(int $id, PostRepository $pr):Response {
+        $post = $pr -> find($id);
+
+        if(!$post) {
+            return $this -> redirectToRoute('/admin');
+        }
+
+        return $this -> render('admin/edit.html.twig', [
+            'id' => $id
+        ]);
     }
 
     #[Route('/admin/addpost', name: 'app_admin_store', methods: ['POST', 'GET'])]
@@ -47,7 +55,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('app_admin');
     }
 
-    #[Route('/admin/editpost/{id}', name: 'app_admin_edit', methods: ['PUT', 'PATCH', 'GET'])]
+    #[Route('/admin/editpost/{id}', name: 'app_admin_edit', methods: ['PUT', 'POST', 'GET'])]
     public function edit(int $id,Request $request, EntityManagerInterface $em, PostRepository $pr) {
         $post = $pr -> find($id);
 
