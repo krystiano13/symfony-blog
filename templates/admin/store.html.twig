@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <h1>Store</h1>
+    {% endif %}
+{% endblock %}

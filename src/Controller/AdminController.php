@@ -22,6 +22,11 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[Route('/admin/add', name: 'app_admin_add', methods: ['GET'])]
+    public function show():Response {
+        return $this -> render('admin/store.html.twig');
+    }
+
     #[Route('/admin/post/delete/{id}', name: 'app_admin_post_delete', methods: ['DELETE', 'GET'])]
     public function destroy(int $id, PostRepository $pr, EntityManagerInterface $em, CommentRepository $cr):Response {
         $post = $pr -> find($id);
