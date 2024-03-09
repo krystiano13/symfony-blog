@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class AdminController extends AbstractController
 {
@@ -26,13 +27,17 @@ class AdminController extends AbstractController
     }
 
     #[Route('/admin/add', name: 'app_admin_add', methods: ['GET'])]
-    public function show():Response {
-        return $this -> render('admin/store.html.twig');
+    public function show(Request $request):Response {
+        $errors = $request -> query -> get('errors');
+        return $this -> render('admin/store.html.twig',[
+            'errors' => json_decode($errors) ?? []
+        ]);
     }
 
     #[Route('admin/edit/{id}', name: 'app_admin_edit_view', methods: ['GET'])]
-    public function editView($id, PostRepository $pr):Response {
+    public function editView($id, PostRepository $pr, Request $request):Response {
         $post = $pr -> find($id);
+        $errors = $request -> query -> get('errors');
 
         if(!$post) {
             return $this -> redirectToRoute('app_admin');
@@ -40,15 +45,27 @@ class AdminController extends AbstractController
 
         return $this -> render('admin/edit.html.twig', [
             'id' => $id,
-            'post' => $post
+            'post' => $post,
+            'errors' => json_decode($errors) ?? []
         ]);
     }
 
     #[Route('/admin/addpost', name: 'app_admin_store', methods: ['POST', 'GET'])]
-    public function store(Request $request, EntityManagerInterface $em) {
+    public function store(Request $request, EntityManagerInterface $em, ValidatorInterface $validator) {
         $post = new Post();
 
         $this -> addOrEdit($post, $request);
+
+        $errors = $validator -> validate($post);
+        $messages = array();
+
+        foreach($errors as $error) {
+            array_push($messages,$error -> getMessage());
+        }
+
+        if(count($errors)) {
+            return $this->redirect('/admin/add/?errors='.json_encode($messages));
+        }
 
         $em -> persist($post);
         $em -> flush();
@@ -57,7 +74,7 @@ class AdminController extends AbstractController
     }
 
     #[Route('/admin/editpost/{id}', name: 'app_admin_edit', methods: ['PUT', 'POST', 'GET'])]
-    public function edit($id,Request $request, EntityManagerInterface $em, PostRepository $pr) {
+    public function edit($id,Request $request, EntityManagerInterface $em, PostRepository $pr, ValidatorInterface $validator) {
         $post = $pr -> find($id);
 
         if(!$post) {
@@ -65,6 +82,17 @@ class AdminController extends AbstractController
         }
 
         $this -> addOrEdit($post, $request);
+
+        $errors = $validator -> validate($post);
+        $messages = array();
+
+        foreach($errors as $error) {
+            array_push($messages,$error -> getMessage());
+        }
+
+        if(count($errors)) {
+            return $this->redirect('/admin/edit/'.$id.'?errors='.json_encode($messages));
+        }
 
         $em -> persist($post);
         $em -> flush();
@@ -106,6 +134,11 @@ class AdminController extends AbstractController
 
         $post -> setDate($date -> format('d M Y'));
 
+        if(!$request -> files -> get('image_file')) {
+            $post -> setImage(null);
+            return;
+        }
+
         /**
          * Uploaded Image
          * @type UploadedFile
@@ -117,5 +150,6 @@ class AdminController extends AbstractController
         $image_file -> move($path,$name);
 
         $post -> setImage("build/images/".$name);
+
     }
 }

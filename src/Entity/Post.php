@@ -34,6 +34,7 @@ class Post
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank]
     private ?string $image = null;
 
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post')]
