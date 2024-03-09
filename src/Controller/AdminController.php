@@ -18,7 +18,7 @@ class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin', methods: ['GET'])]
     public function index(PostRepository $postRepository): Response
     {
-        $posts = $postRepository -> findAll();
+        $posts = $postRepository -> findBy([],['id' => 'desc']);
 
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
@@ -33,28 +33,10 @@ class AdminController extends AbstractController
 
     #[Route('/admin/addpost', name: 'app_admin_store', methods: ['POST', 'GET'])]
     public function store(Request $request, EntityManagerInterface $em) {
-        $title = $request -> get('title');
-        $description = $request -> get('description');
-
         $post = new Post();
-        $post -> setTitle($title);
-        $post -> setDescription($description);
 
-        $date = new \DateTime('now');
+        $this -> addOrEdit($post, $request);
 
-        $post -> setDate($date -> format('d M Y'));
-
-        /**
-         * Uploaded Image
-         * @type UploadedFile
-         */
-        $image_file = $request -> files -> get('image_file');
-        $path = $this -> getParameter('kernel.project_dir')."/public/build/images/";
-        $name = uniqid().$image_file -> getClientOriginalName();
-
-        $image_file -> move($path,$name);
-
-        $post -> setImage("build/images/".$name);
         $em -> persist($post);
         $em -> flush();
 
@@ -77,5 +59,34 @@ class AdminController extends AbstractController
         }
 
         return $this->redirectToRoute('app_admin');
+    }
+
+    /**
+     * @param Post $post
+     * @param Request $request
+     * @return void
+     */
+    private function addOrEdit(Post &$post, Request &$request):void {
+        $title = $request -> get('title');
+        $description = $request -> get('description');
+
+        $post -> setTitle($title);
+        $post -> setDescription($description);
+
+        $date = new \DateTime('now');
+
+        $post -> setDate($date -> format('d M Y'));
+
+        /**
+         * Uploaded Image
+         * @type UploadedFile
+         */
+        $image_file = $request -> files -> get('image_file');
+        $path = $this -> getParameter('kernel.project_dir')."/public/build/images/";
+        $name = uniqid().$image_file -> getClientOriginalName();
+
+        $image_file -> move($path,$name);
+
+        $post -> setImage("build/images/".$name);
     }
 }
